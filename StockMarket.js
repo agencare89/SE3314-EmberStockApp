@@ -7,4 +7,3 @@ StockApp = Ember.Application.create({
 
 StockApp.ApplicationSerializer = DS.LSSerializer.extend();
 StockApp.ApplicationAdapter = DS.LSAdapter.extend({ namespace: 'StockMarket' });
-
