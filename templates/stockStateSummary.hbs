@@ -9,5 +9,34 @@
               </ul>
           </div>
       </div>
+    <table class = "table table-striped table-bordered table-hover" >
+        <thead>
+            <tr>
+                <th style = "text-align:center;">Company</th>
+                <th style = "text-align:center;">Open Price</th>
+                <th style = "text-align:center;">Last Sale</th>
+                <th style = "text-align:center;" colspan = "3">Change</th>
+                <th style = "text-align:center;">Share Volume</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-link = "row" class = "rowlink">
+        {{#each company in model}}
+            <tr>
+                <td>{{company.name}}</td>
+                <td>{{company.openPrice}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-info">Buy</button>
+                    <button type="button" class="btn btn-info">Sell</button>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
 </div>
 {{outlet}}
