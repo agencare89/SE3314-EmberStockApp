@@ -1,7 +1,8 @@
 /**
  * Created by Adam on 2015-03-04.
  */
-StockApp.Company.FIXTURES =
+StockApp.Company.reopenClass({
+    FIXTURES:
     [
         {
             id: 1,
@@ -28,4 +29,4 @@ StockApp.Company.FIXTURES =
             name: "Intel Corporation",
             openPrice: 0.55
         }
-    ];
+    ]});

@@ -1,4 +1,4 @@
 StockApp.Company = DS.Model.extend({
-    name: DS.attr(),
+    name: DS.attr('string'),
     openPrice: DS.attr('number')
 });
