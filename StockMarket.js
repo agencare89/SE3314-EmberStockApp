@@ -8,8 +8,6 @@ window.App = Ember.Application.create({
 App.ApplicationSerializer = DS.LSSerializer.extend();
 App.ApplicationAdapter = DS.LSAdapter.extend({ namespace: 'StockMarket' });
 
-
-
 App.Router.map(function() {
 
     this.resource('application', function() {
