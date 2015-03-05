@@ -23,7 +23,7 @@
         <tbody data-link = "row" class = "rowlink">
         {{#each company in model}}
             <tr>
-                <td>{{company.name}}</td>
+                <td>{{#link-to 'marketByOrder'}}{{company.name}}{{/link-to}}</td>
                 <td>{{company.openPrice}}</td>
                 <td></td>
                 <td></td>
@@ -31,11 +31,13 @@
                 <td></td>
                 <td></td>
                 <td style = "text-align:center;">
-                    <button type="button" class="btn btn-info">Buy</button>
-                    <button type="button" class="btn btn-info">Sell</button>
+                    <button type="button" class="btn btn-info">{{#link-to 'placeBidOrder'}}Buy{{/link-to}}</button>
+                    <button type="button" class="btn btn-info">{{#link-to 'placeSaleOrder'}}Sell{{/link-to}}</button>
                 </td>
             </tr>
         {{/each}}
         </tbody>
     </table>
+    <br>
+    {{outlet}}
 </div>
