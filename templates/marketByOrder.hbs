@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-md-4">
-            <h3><center> Market By Order </center></h3>
+            <h3><center> Market By Order for {{model.name}}</center></h3>
             <table class = "table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -29,7 +29,8 @@
             {{outlet}}
         </div>
         <div class = "col-md-2">
-            <img src = "img/apple.png" class = "logopic">
+            <h3><center>Symbol</center></h3>
+            <img {{bindAttr src = "model.logo"}} class = "img-responsive logopic" >
         </div>
     </div>
 </div>
