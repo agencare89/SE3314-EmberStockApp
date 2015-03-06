@@ -1,5 +1,5 @@
-StockApp.buyOrder = DS.Model.extend({
-    company: DS.attr('company'),
+StockApp.BuyOrder = DS.Model.extend({
+    companyID: DS.attr('number'),
     numOfShares: DS.attr('number'),
     price: DS.attr('number')
 });
