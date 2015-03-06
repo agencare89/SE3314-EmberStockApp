@@ -13,3 +13,7 @@
     margin-right: auto;
     display: block;
 }
+
+.pads {
+    padding-bottom: 6px;
+}

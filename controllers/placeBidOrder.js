@@ -1,5 +1,5 @@
 StockApp.PlaceBidOrderController = Ember.Controller.extend({
-    actions:{
+    actions: {
         newBid: function(params) {
             var newBid = this.store.createRecord('buyOrder', {
                 companyID: params,
@@ -12,6 +12,8 @@ StockApp.PlaceBidOrderController = Ember.Controller.extend({
             this.transitionToRoute('marketByOrder', params);
         },
         cancelBid: function() {
+            this.set('numOfShares', '');
+            this.set('price', '');
             this.transitionToRoute('stockStateSummary');
         }
     }

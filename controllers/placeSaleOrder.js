@@ -12,6 +12,8 @@ StockApp.PlaceSaleOrderController = Ember.Controller.extend({
             this.transitionToRoute('marketByOrder', params);
         },
         cancelSale: function() {
+            this.set('numOfShares', '');
+            this.set('price', '');
             this.transitionToRoute('stockStateSummary');
         }
     }

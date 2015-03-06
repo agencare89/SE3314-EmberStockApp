@@ -1,11 +1,31 @@
 <br>
+<script>
+    // this is not working...
+    document.getElementById('MA').onclick = function() {
+        this.className = 'active';
+        document.getElementById('lose').className = '';
+        document.getElementById('gain').className = '';
+    };
+    document.getElementById('gain').onclick = function() {
+        this.className = 'active';
+        document.getElementById('MA').className = '';
+        document.getElementById('lose').className = '';
+    };
+    document.getElementById('lose').onclick = function() {
+        this.className = 'active';
+        document.getElementById('MA').className = '';
+        document.getElementById('gain').className = '';
+    };
+
+</script>
+
 <div class = "container">
       <div class = "navbar navbar-default">
           <div class = "container">
               <ul class = "nav navbar-nav">
-                  <li class="active"><a href="#">Most Active By Volume<span class="sr-only">(current)</span></a></li>
-                  <li><a href="#">Gainers</a></li>
-                  <li><a href = "#">Losers</a></li>
+                  <li id = "MA" class="active">{{#link-to 'stockStateSummary'}}Most Active By Volume{{/link-to}}</li>
+                  <li id = "gain">{{#link-to 'stockStateSummary'}}Gainers{{/link-to}}</li>
+                  <li id = "lose">{{#link-to 'stockStateSummary'}}Losers{{/link-to}}</li>
               </ul>
           </div>
       </div>
