@@ -1,8 +1,8 @@
 <br>
 <div class="container">
     <div class="container">
-        <div class="col-md-8">
-            <h1>Company Name goes here (populated with company class)</h1>
+        <div>
+            <h1>Bid Order Form for {{model.name}}</h1>
         </div>
     </div>
 
@@ -11,40 +11,40 @@
         <div class="col-md-8">
             <div class="form-group">
                 <div class="col-md-2">
-                    <label for="bidnum">Number of Shares:</label>
+                    <label for="numOfShares">Number of Shares:</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-10">
                     <div class="input-group">
-                        <span class="input-group-addon">$</span>
-                        <input type="text" id="bidnum" class="form-control" placeholder="Number of Bids">
+                        <span class="input-group-addon">#</span>
+                        {{input value=numOfShares type="number" id="numOfShares" class="form-control" placeholder="Number of Bids"}}
                     </div>
                 </div>
             </div>
             <br><br>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label for="bidprice">Purchase Price:</label>
+                    <label for="price">Purchase Price:</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-10">
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" id="bidprice" class="form-control" placeholder="Price of Bids">
+                        {{input value=price type="number" id="price" class="form-control" placeholder="Price of Bids"}}
                     </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="container">
+                <div class="col-md-2 col-md-offset-3">
+                    <button type="button" class="btn btn-success" {{action 'newBid' model.id}}>Submit</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger" {{action 'cancelBid'}}>Cancel</button>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <img src="./img/facebook.png" class="square" style="padding-bottom:50px;">
+            <img {{bindAttr src = "model.logo"}} class="logopic" style="padding-bottom:100px;">
         </div>
     </div>
     <br><br>
-
-    <div class="container">
-        <div class="col-md-2 col-md-offset-4">
-            <button type="button" class="btn btn-success">Submit</button>
-        </div>
-        <div class="col-md-2 col-md-offset-1">
-            <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-    </div>
-    <br><br>
+</div>

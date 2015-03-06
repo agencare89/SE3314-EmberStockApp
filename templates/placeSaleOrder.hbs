@@ -1,3 +1,50 @@
-<div class = "container">
-    <h1> This is the Sale Order </h1>
+<br>
+<div class="container">
+    <div class="container">
+        <div>
+            <h1>Sale Order Form for {{model.name}}</h1>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="numOfShares">Number of Shares:</label>
+                </div>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">#</span>
+                        {{input value=numOfShares type="number" id="numOfShares" class="form-control" placeholder="Number to Sell"}}
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="price">Selling Price:</label>
+                </div>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        {{input value=price type="number" id="price" class="form-control" placeholder="Price of Shares"}}
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="container">
+                <div class="col-md-2 col-md-offset-3">
+                    <button type="button" class="btn btn-success" {{action 'newSale' model.id}}>Submit</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger" {{action 'cancelSale'}}>Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img {{bindAttr src = "model.logo"}} class="logopic" style="padding-bottom:100px;">
+        </div>
+    </div>
+    <br><br>
 </div>

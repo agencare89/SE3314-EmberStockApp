@@ -31,8 +31,8 @@
                 <td></td>
                 <td></td>
                 <td style = "text-align:center;">
-                    <button type="button" class="btn btn-info">{{#link-to 'placeBidOrder'}}Buy{{/link-to}}</button>
-                    <button type="button" class="btn btn-info">{{#link-to 'placeSaleOrder'}}Sell{{/link-to}}</button>
+                    {{#link-to 'placeBidOrder' company.id}}<button type="button" class="btn btn-info">Buy</button>{{/link-to}}
+                    {{#link-to 'placeSaleOrder' company.id}}<button type="button" class="btn btn-info">Sell</button>{{/link-to}}
                 </td>
             </tr>
         {{/each}}
