@@ -5,5 +5,6 @@ StockApp = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
+StockApp.ApplicationAdapter = DS.FixtureAdapter;
 StockApp.ApplicationSerializer = DS.LSSerializer.extend();
-StockApp.ApplicationAdapter = DS.LSAdapter.extend({ namespace: 'StockMarket' });
+///StockApp.ApplicationAdapter = DS.LSAdapter.extend({ namespace: 'StockApp' });
