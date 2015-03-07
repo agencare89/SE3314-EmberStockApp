@@ -16,14 +16,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                {{#each order in model.listOfBuys}}
+
                     <tr>
+                    {{#each order in model.listOfBuys}}
                         <td style = "text-align:center;">{{order.numOfShares}}</td>
                         <td style = "text-align:center;">{{order.price}}</td>
-                        <td style = "text-align:center;"></td>
-                        <td style = "text-align:center;"></td>
+                    {{/each}}
+                    {{#each order in model.listOfSells}}
+                        <td style = "text-align:center;">{{order.numOfShares}}</td>
+                        <td style = "text-align:center;">{{order.price}}</td>
+                    {{/each}}
                     </tr>
-                {{/each}}
                 </tbody>
             </table>
         </div>
