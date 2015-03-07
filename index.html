@@ -54,6 +54,26 @@
     <script src="routes/placeSaleOrder.js"></script>
     <script src="routes/stockStateSummary.js"></script>
 
+    <script type = 'text/javascript'>
+        function func1 () {
+            document.getElementById('most').className = 'active';
+            document.getElementById('lose').className = '';
+            document.getElementById('gain').className = '';
+        }
+
+        function func2 () {
+            document.getElementById('gain').className = 'active';
+            document.getElementById('most').className = '';
+            document.getElementById('lose').className = '';
+        }
+
+        function func3 () {
+            document.getElementById('lose').className = 'active';
+            document.getElementById('most').className = '';
+            document.getElementById('gain').className = '';
+        }
+    </script>
+
     <script>
     EmberHandlebarsLoader.loadTemplates([
         'application', 'stockStateSummary', 'marketByOrder', 'marketByPrice', 'placeBidOrder', 'placeSaleOrder'

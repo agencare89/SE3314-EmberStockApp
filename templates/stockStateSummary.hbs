@@ -1,31 +1,11 @@
 <br>
-<script>
-    // this is not working...
-    document.getElementById('MA').onclick = function() {
-        this.className = 'active';
-        document.getElementById('lose').className = '';
-        document.getElementById('gain').className = '';
-    };
-    document.getElementById('gain').onclick = function() {
-        this.className = 'active';
-        document.getElementById('MA').className = '';
-        document.getElementById('lose').className = '';
-    };
-    document.getElementById('lose').onclick = function() {
-        this.className = 'active';
-        document.getElementById('MA').className = '';
-        document.getElementById('gain').className = '';
-    };
-
-</script>
-
 <div class = "container">
       <div class = "navbar navbar-default">
           <div class = "container">
               <ul class = "nav navbar-nav">
-                  <li id = "MA" class="active">{{#link-to 'stockStateSummary'}}Most Active By Volume{{/link-to}}</li>
-                  <li id = "gain"><a href = "#">Gainers</a></li>
-                  <li id = "lose"><a href = "#">Losers</a></li>
+                  <li class = 'active' id = "most"><a onClick = 'func1();' href = "#" {{action 'sortBy' 'mostVolume'}}>Most Active By Volume</a></li>
+                  <li id = "gain"><a onClick = 'func2();' href = "#" {{action 'sortBy' 'gainers'}}>Gainers</a></li>
+                  <li id = "lose"><a onClick = 'func3();' href = "#" {{action 'sortBy' 'losers'}}>Losers</a></li>
               </ul>
           </div>
       </div>
@@ -41,7 +21,7 @@
             </tr>
         </thead>
         <tbody data-link = "row" class = "rowlink">
-        {{#each company in model}}
+        {{#each company in sortedCompanies}}
             <tr>
                 <td style = "text-align:center;">{{#link-to 'marketByOrder' company.id}}{{company.name}}{{/link-to}}</td>
                 <td style = "text-align:center;">{{company.openPrice}}</td>
