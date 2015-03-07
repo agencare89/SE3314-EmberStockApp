@@ -46,3 +46,5 @@ StockApp.StockStateSummaryController = Ember.ArrayController.extend({
         }
     }.property('model', 'filter')
 });
+
+// hello
