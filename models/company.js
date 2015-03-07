@@ -10,5 +10,8 @@ StockApp.Company = DS.Model.extend({
     volume: DS.attr('number'),
 
     listOfBuys: DS.hasMany('buyOrder'),
-    listOfSells: DS.hasMany('sellOrder')
+    listOfSells: DS.hasMany('sellOrder'),
+
+    //topTenBuys: DS.hasMany(),
+    //topTenSells: DS.hasMany()
 });
