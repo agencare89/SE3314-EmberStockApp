@@ -1,6 +1,7 @@
 StockApp.PlaceBidOrderController = Ember.Controller.extend({
     actions: {
         newBid: function(params) {
+            // Create a new bid order and store it
             var newBid = this.store.createRecord('buyOrder', {
                 companyID: params.id,
                 numOfShares: this.get('numOfShares'),
@@ -8,6 +9,7 @@ StockApp.PlaceBidOrderController = Ember.Controller.extend({
                 comp: params
             });
             newBid.save();
+            // Set the new changes into the 
             params.set('volume', this.get('numOfShares'));
             params.set('lastSale', this.get('price'));
             var netChange = (params.get('lastSale')-params.get('openPrice')).toFixed(2);
