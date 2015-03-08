@@ -1,7 +1,7 @@
 /**
  * Created by Adam on 2015-03-08.
  */
-StockApp.MarketByOrderController = Ember.Controller.extend({
+StockApp.MarketByOrderController = Ember.ArrayController.extend({
     sortBuysProperties: ['price:desc', 'numOfShares:desc'],
     sortedBidOrders: Ember.computed.sort('model.listOfBuys', 'sortBuysProperties'),
 
@@ -9,10 +9,3 @@ StockApp.MarketByOrderController = Ember.Controller.extend({
     sortedSellOrders: Ember.computed.sort('model.listOfSells', 'sortSellProperties')
 });
 
-StockApp.MarketByPriceController = Ember.Controller.extend({
-    sortBuysProperties: ['price:desc', 'numOfShares:desc'],
-    sortedBidOrders: Ember.computed.sort('model.listOfBuys', 'sortBuysProperties'),
-
-    sortSellProperties: ['price:asc', 'numOfShares:desc'],
-    sortedSellOrders: Ember.computed.sort('model.listOfSells', 'sortSellProperties')
-});

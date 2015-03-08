@@ -3,6 +3,9 @@
  */
 Ember.Handlebars.helper('marketByOrderBuilder', function(buyOrders, sellOrders) {
     var htmlString = '';
+    for (var a = 0; a < buyOrders.length; a++) {
+        console.log(buyOrders.objectAt(a).get('numOfShares') + '' + buyOrders.objectAt(a).get('price'));
+    }
     if (buyOrders.length > 0 || sellOrders.length > 0) {
         for (var i = 0; i < 10; i++) {
             if (buyOrders.length > sellOrders.length) {
@@ -29,7 +32,6 @@ Ember.Handlebars.helper('marketByOrderBuilder', function(buyOrders, sellOrders) 
                 htmlString += '<td></td><td></td>'
             }
             htmlString += '</tr>';
-
         }
     }
     return new Ember.Handlebars.SafeString(htmlString);

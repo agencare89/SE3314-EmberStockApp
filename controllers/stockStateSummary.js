@@ -46,10 +46,3 @@ StockApp.StockStateSummaryController = Ember.ArrayController.extend({
         }
     }.property('model', 'filter', '@this', 'sortProperties')
 });
-
-/*
-StockApp.StockStateSummaryController = Ember.Object.extend({
-    volume1: Ember.computed.alias('volume'),
-    netChange1: Ember.computed.alias('netChange'),
-    name1: Ember.computed.alias('name')
-}); */
