@@ -1,6 +1,4 @@
 StockApp.PlaceSaleOrderController = Ember.Controller.extend({
-    sortProperties: ['price:asc', 'numOfShares:desc'],
-    sortedSellOrders: Ember.computed.sort('model.listOfSells', 'sortProperties'),
     actions:{
         newSale: function(params) {
             // Search through the sales to find if the bid can be met
