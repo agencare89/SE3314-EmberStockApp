@@ -36,9 +36,6 @@
     <!-- put all the javascript links to controllers, models, routes here -->
     <script src="StockMarket.js"></script>
     <script src="router.js"></script>
-    <script src="data.js"></script>
-    <script src="marketDepth.js"></script>
-
 
     <script src="controllers/placeBidOrder.js"></script>
     <script src="controllers/placeSaleOrder.js"></script>
@@ -57,19 +54,20 @@
     <script src="routes/placeSaleOrder.js"></script>
     <script src="routes/stockStateSummary.js"></script>
 
+    <script src="data.js"></script>
+    <script src="marketDepth.js"></script>
+
     <script type = 'text/javascript'>
         function func1 () {
             document.getElementById('most').className = 'active';
             document.getElementById('lose').className = '';
             document.getElementById('gain').className = '';
         }
-
         function func2 () {
             document.getElementById('gain').className = 'active';
             document.getElementById('most').className = '';
             document.getElementById('lose').className = '';
         }
-
         function func3 () {
             document.getElementById('lose').className = 'active';
             document.getElementById('most').className = '';

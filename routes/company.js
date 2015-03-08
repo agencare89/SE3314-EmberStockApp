@@ -3,6 +3,6 @@
  */
 StockApp.CompanyRoute = Ember.Route.extend({
     model: function() {
-        return  this.store.find('company') ;
+        return this.store.find('company') ;
     }
 });

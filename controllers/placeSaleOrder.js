@@ -31,19 +31,19 @@ StockApp.PlaceSaleOrderController = Ember.Controller.extend({
             if(parseInt(this.get('numOfShares')) != 0) {
                 var newSale = this.store.createRecord('sellOrder', {
                     companyID: params.get('id'),
-                    numOfShares: this.get('numOfShares'),
-                    price: this.get('price'),
+                    numOfShares: parseInt(this.get('numOfShares')),
+                    price: parseFloat(this.get('price')),
                     comp: params
                 });
-                newSale.save();
+                //newSale.save();
             }
             // Set the sale to show in stockStateSummary if there was a sale made
             if (numSold > 0) {
                 console.log(numSold);
                 params.set('volume', parseInt(params.get('volume')+numSold));
-                params.set('lastSale', this.get('price'));
-                var netChange = (params.get('lastSale') - params.get('openPrice')).toFixed(2);
-                var percentChange = (((params.get('lastSale') - params.get('openPrice')) / params.get('openPrice')) * 100).toFixed(2);
+                params.set('lastSale', parseFloat(this.get('price')));
+                var netChange = parseFloat((params.get('lastSale') - params.get('openPrice')).toFixed(2));
+                var percentChange = parseFloat((((params.get('lastSale') - params.get('openPrice')) / params.get('openPrice')) * 100).toFixed(2));
                 params.set('netChange', netChange);
                 params.set('percentChange', percentChange);
                 if (netChange > 0) {
