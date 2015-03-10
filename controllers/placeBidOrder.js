@@ -31,6 +31,8 @@ StockApp.PlaceBidOrderController = Ember.Controller.extend({
                     companyID: params.id,
                     numOfShares: parseInt(this.get('numOfShares')),
                     price: parseFloat(this.get('price')),
+                    groupCount: 0,
+                    groupVolume: 0,
                     comp: params
                 });
                 //newBid.save();
@@ -52,6 +54,45 @@ StockApp.PlaceBidOrderController = Ember.Controller.extend({
                 else {
                     params.set('changePic', './img/noChange.png');
                 }
+            }
+
+            // here we have to GROUP the bids and sells lists..
+            var buyOrders = params.get('listOfBuys');
+            var groupedCount = 0;
+            var groupedVolume = 0;
+
+            for (var a = 0; a < buyOrders.get('length'); a++) {
+
+                for (var b = 0; b < buyOrders.get('length'); b++) {
+                    if (buyOrders.objectAt(a).get('price') === buyOrders.objectAt(b).get('price')) {
+                        groupedCount = groupedCount + 1;
+                        groupedVolume = groupedVolume + parseInt(buyOrders.objectAt(b).get('numOfShares'));
+                    }
+                }
+
+                buyOrders.objectAt(a).set('groupCount', groupedCount);
+                buyOrders.objectAt(a).set('groupVolume', parseInt(groupedVolume));
+                groupedCount = 0;
+                groupedVolume = 0;
+            }
+
+            var sellOrders = params.get('listOfSells');
+            groupedCount = 0;
+            groupedVolume = 0;
+
+            for (var c = 0; c < sellOrders.get('length'); c++) {
+
+                for (var d = 0; d < sellOrders.get('length'); d++) {
+                    if (sellOrders.objectAt(c).get('price') === sellOrders.objectAt(d).get('price'))  {
+                        groupedCount = groupedCount + 1;
+                        groupedVolume = groupedVolume + parseInt(sellOrders.objectAt(d).get('numOfShares'));
+                    }
+                }
+
+                sellOrders.objectAt(c).set('groupCount', groupedCount);
+                sellOrders.objectAt(c).set('groupVolume', parseInt(groupedVolume));
+                groupedCount = 0;
+                groupedVolume = 0;
             }
             // Clear the order form and transition back to marketBy Order
             this.set('numOfShares', '');
