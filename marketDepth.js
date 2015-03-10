@@ -95,7 +95,7 @@ Ember.Handlebars.helper('marketByPriceBuilder', function(buyOrders, sellOrders){
                 arrayOfSellPrices.push(sellOrders[i].get('price'));
                 htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
                 htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                htmlString += '<tr>';
+                htmlString += '</tr>';
             }
         }
     }
