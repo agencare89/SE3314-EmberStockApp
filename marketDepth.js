@@ -47,8 +47,10 @@ Ember.Handlebars.helper('marketByPriceBuilder', function(buyOrders, sellOrders){
 
         // for loop that will break after 10 entries have been displayed
         for (var i = 0; i < 10; i++) {
-            displayBuy = true;                  // first, assume that the buy is going to be displayed
-            displaySell = true;                 // assume the sell will also be displayed
+            displayBuy = true;
+            displaySell = true;
+            if (!buyOrders[i]) displayBuy = false;
+            if (!sellOrders[i]) displaySell = false;
 
             // for loop that checks the price of the current bid order and compares it with the ones currently being displayed
             for (var j = 0; j < arrayOfBuyPrices.length; j++) {
@@ -69,80 +71,32 @@ Ember.Handlebars.helper('marketByPriceBuilder', function(buyOrders, sellOrders){
                 }
             }
 
-            htmlString += '<tr>'
-            if (buyOrders.length > sellOrders.length) {
-                if (i == buyOrders.length) break;               // there are no more entries to display --> break
-                if (i >= sellOrders.length) {                   // if i is currently at a place where there are bids to display, but not sells
-                    if (displayBuy) {
-                        arrayOfBuyPrices.push(buyOrders[i].get('price'));           // put this bid in the array of whats displayed
-                        htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                        htmlString += '<td></td><td></td><td></td>';
-                    }
-                }
-                else {
-                    if (!displayBuy && !displaySell) break;
-                    if (displayBuy) {
-                        arrayOfBuyPrices.push(buyOrders[i].get('price'));           // put this bid in the array of whats displayed
-                        htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                    }
-                    else {
-                        htmlString += '<td></td><td></td><td></td>';
-                    }
-                    if (displaySell) {
-                        arrayOfSellPrices.push(sellOrders[i].get('price'));         // put this sell in the array of whats displayed
-                        htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                    }
-                    else {
-                        htmlString += '<td></td><td></td><td></td>';
-                    }
-                }
+            if ((buyOrders.length > sellOrders.length) && (i == buyOrders.length)) break;
+            else if ((sellOrders.length > buyOrders.length) && (i == sellOrders.length)) break;
+            else if ((sellOrders.length == buyOrders.length) && (i == sellOrders.length)) break;
+
+            if (displayBuy && !displaySell) {
+                htmlString += '<tr>';
+                arrayOfBuyPrices.push(buyOrders[i].get('price'));
+                htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
+                htmlString += '<td></td><td></td><td></td>';
+                htmlString += '</tr>';
             }
-            else if (sellOrders.length > buyOrders.length) {
-                if (i == sellOrders.length) break;
-                if (i >= buyOrders.length) {
-                    if (displaySell) {
-                        arrayOfSellPrices.push(sellOrders[i].get('price'));         // put this sell in the array of whats displayed
-                        htmlString += '<td></td><td></td><td></td>';
-                        htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                    }
-                }
-                else {
-                    if (!displayBuy && !displaySell) break;
-                    if (displayBuy) {
-                        arrayOfBuyPrices.push(buyOrders[i].get('price'));           // put this bid in the array of whats displayed
-                        htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                    }
-                    else {
-                        htmlString += '<td></td><td></td><td></td>';
-                    }
-                    if (displaySell) {
-                        arrayOfSellPrices.push(sellOrders[i].get('price'));         // put this sell in the array of whats displayed
-                        htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                    }
-                    else {
-                        htmlString += '<td></td><td></td><td></td>';
-                    }
-                }
+            else if (!displayBuy && displaySell) {
+                htmlString += '<tr>';
+                arrayOfSellPrices.push(sellOrders[i].get('price'));
+                htmlString += '<td></td><td></td><td></td>';
+                htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
+                htmlString += '</tr>';
             }
-            else if (sellOrders.length == buyOrders.length) {
-                if (i == sellOrders.length) break;
-                if (!displayBuy && !displaySell) break;
-                if (displayBuy) {
-                    arrayOfBuyPrices.push(buyOrders[i].get('price'));           // put this bid in the array of whats displayed
-                    htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                }
-                else {
-                    htmlString += '<td></td><td></td><td></td>';
-                }
-                if (displaySell) {
-                    arrayOfSellPrices.push(sellOrders[i].get('price'));         // put this sell in the array of whats displayed
-                    htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                }
-                else {
-                    htmlString += '<td></td><td></td><td></td>';
-                }
+            else if (displayBuy && displaySell) {
+                htmlString += '<tr>';
+                arrayOfBuyPrices.push(buyOrders[i].get('price'));
+                arrayOfSellPrices.push(sellOrders[i].get('price'));
+                htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
+                htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
+                htmlString += '<tr>';
             }
-            htmlString += '</tr>';
         }
     }
     // now return the html string we built to the template
