@@ -22,6 +22,7 @@ StockApp.StockStateSummaryController = Ember.ArrayController.extend({
     },
     filteredCompanies: function() {
         console.log(this.get('sortProperties'));
+        this.transitionToRoute('stockStateSummary');
         switch (this.get('filter')) {
             case '=':
                 console.log('volume');

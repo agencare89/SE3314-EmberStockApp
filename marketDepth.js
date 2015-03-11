@@ -40,6 +40,8 @@ Ember.Handlebars.helper('marketByPriceBuilder', function(buyOrders, sellOrders){
     var htmlString = '';                        // we are building an html string that will be returned into the template to display the table
     var arrayOfBuyPrices = new Array();         // keep track of what has been displayed on the marketByPrice (buys)
     var arrayOfSellPrices = new Array();        // keep track of what has been displayed on the marketByPrice (sells)
+    var printBuysArray = new Array();           // push all the buys in this
+    var printSellsArray = new Array();          // push all the sells in this
     var displayBuy = false;                     // if we are going to display a buy
     var displaySell = false;                    // if we are going to display the sell
 
@@ -76,27 +78,36 @@ Ember.Handlebars.helper('marketByPriceBuilder', function(buyOrders, sellOrders){
             else if ((sellOrders.length == buyOrders.length) && (i == sellOrders.length)) break;
 
             if (displayBuy && !displaySell) {
-                htmlString += '<tr>';
                 arrayOfBuyPrices.push(buyOrders[i].get('price'));
-                htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                htmlString += '<td></td><td></td><td></td>';
-                htmlString += '</tr>';
+                printBuysArray.push(buyOrders[i]);
             }
             else if (!displayBuy && displaySell) {
-                htmlString += '<tr>';
                 arrayOfSellPrices.push(sellOrders[i].get('price'));
-                htmlString += '<td></td><td></td><td></td>';
-                htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                htmlString += '</tr>';
+                printSellsArray.push(sellOrders[i]);
             }
             else if (displayBuy && displaySell) {
-                htmlString += '<tr>';
                 arrayOfBuyPrices.push(buyOrders[i].get('price'));
                 arrayOfSellPrices.push(sellOrders[i].get('price'));
-                htmlString += '<td>' + buyOrders[i].get('groupCount') + '</td><td>' + buyOrders[i].get('groupVolume') + '</td><td>' + buyOrders[i].get('price') + '</td>';
-                htmlString += '<td>' + sellOrders[i].get('groupCount') + '</td><td>' + sellOrders[i].get('groupVolume') + '</td><td>' + sellOrders[i].get('price') + '</td>';
-                htmlString += '</tr>';
+                printBuysArray.push(buyOrders[i]);
+                printSellsArray.push(sellOrders[i]);
             }
+        }
+        for (var x = 0; x < 10; x++) {
+            htmlString += '<tr>';
+            if (x >= printSellsArray.length && x >= printBuysArray.length) break;
+            else if (x >= printBuysArray.length) {
+                htmlString += '<td></td><td></td><td></td>';
+                htmlString += '<td>' + printSellsArray[x].get('groupCount') + '</td><td>' + printSellsArray[x].get('groupVolume') + '</td><td>' + printSellsArray[x].get('price') + '</td>';
+            }
+            else if (x >= printSellsArray.length) {
+                htmlString += '<td>' + printBuysArray[x].get('groupCount') + '</td><td>' + printBuysArray[x].get('groupVolume') + '</td><td>' + printBuysArray[x].get('price') + '</td>';
+                htmlString += '<td></td><td></td><td></td>';
+            }
+            else {
+                htmlString += '<td>' + printBuysArray[x].get('groupCount') + '</td><td>' + printBuysArray[x].get('groupVolume') + '</td><td>' + printBuysArray[x].get('price') + '</td>';
+                htmlString += '<td>' + printSellsArray[x].get('groupCount') + '</td><td>' + printSellsArray[x].get('groupVolume') + '</td><td>' + printSellsArray[x].get('price') + '</td>';
+            }
+            htmlString += '</tr>';
         }
     }
     // now return the html string we built to the template
